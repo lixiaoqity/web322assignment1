@@ -1,0 +1,28 @@
+<div id="promotion">
+    <img src='img/promotion.jpg' alt='' width="100%" height="80%">
+</div>
+
+
+<div class="categories">
+    {{#each categorySection}}
+    <div class="categories1">
+        <p>
+            {{this.category}}
+        </p>
+        <img class="pro-img" src="{{this.categoryImg}}" alt='' width="170" height="180"><br>
+        <a href="/">Explore now</a>
+    </div>
+    {{/each}}
+</div>
+
+
+<div class="bestSellers">
+    <p>
+        Best sellers
+    </p>
+    {{#each sellerSection}}
+        <div class="bestSeller1">
+            <img src="{{this.productImg}}" alt='' width="170" height="180">
+        </div>
+    {{/each}}
+</div>

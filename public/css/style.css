@@ -1,0 +1,187 @@
+header {
+    width: 100%;
+    background-color:#7ba9cc;
+    left: 0;
+    bottom: 0;
+    height: auto;
+    display: inline-block;
+    text-align: center;
+    color: white;
+}
+nav {
+    background-color: navy;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+nav ul li {
+    float: left;
+}
+
+nav a:link, nav a:visited {
+    display: block;
+    color: #ffffff;
+    background-color: navy;
+    text-align: center;
+    padding: 8px 12px;
+    text-decoration: none;
+    border-left: 1px inset #ecefec;
+    border-right: 1px inset #ecefec;
+}
+
+.categories{
+    width: 100%;
+    background-color:gainsboro;
+    left: 0;
+    bottom: 0;
+    height: 280px;
+    display: inline-block;
+    text-align: center;
+  }
+.categories1 {
+    left: 0;
+    float: left;
+    width: 20%;
+    padding: 10px;
+    height: 200px;
+    text-align: center;
+}
+.bestSellers {
+    width: 100%;
+    background-color:gainsboro;
+    left: 0;
+    bottom: 0;
+    height: auto;
+    display: inline-block;
+    text-align: left;
+}
+.bestSeller1 {
+    left: 0;
+    float: left;
+    width: 25%;
+    padding: 10px;
+    height: 200px;
+    text-align: left;
+}
+.myProducts {
+
+    display: grid;
+    grid-template-columns:  1fr 1fr 1fr;
+    padding: 20px 2px;
+}
+.myProducts1 {
+    border: 1px solid rgb(182, 180, 180);
+    padding: 10px;
+    height:340px;
+    display: inline-block;
+}
+
+.img-container {
+    text-align: center;
+}
+
+.attributes{
+    width: 20%;
+    font: 1rem Arial;
+    height: 20px;
+    padding: 1px 0 0 2px;
+    background-color: rgb(235, 59, 59);
+}
+.products-des{
+    font: 1rem Arial;
+    padding-left: 3px;
+}
+.products-cate{
+    color: rgb(72, 194, 133);
+    font: 1rem Arial;
+    text-align: right;
+    margin-top: 0;
+}
+
+
+footer {
+    width: 100%;
+    background-color:#7ba9cc;
+    left: 0;
+    bottom: 0;
+    height: auto;
+    display: inline-block;
+    text-align: center;
+    color: white;
+}
+* {
+    box-sizing: border-box;
+}
+.footList {
+    color: black;
+    left: 0;
+    float: left;
+    width: 25%;
+    padding: 10px;
+    height: 200px;
+    text-align: left;
+}
+.footContainer:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+a {
+    color: rgb(31, 31, 235);
+    text-decoration: none;
+}
+a:hover{
+    color:blue;
+}
+
+form {
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    display: block;
+    position: relative;
+    left: 38%;
+    width: 300px;
+    height: 485px;
+    padding: 14px 18px;
+}
+
+form p {
+    margin: 0;
+}
+
+.regisLable {
+    font: 0.9rem Arial;
+    padding-bottom: 2px;
+    font-weight: bolder;
+}
+
+.regisInput {
+    margin-bottom: 8px;
+    border: 1px solid #a6a6a6;
+    border-radius: 3px;
+    width: 90%;
+    line-height: normal;
+    height: 31px;
+    padding-left: 4px;
+}
+.regisI {
+    font: 1rem;
+    font-style:italic;
+}
+.regisPass{
+    font: 1rem Arial;
+}
+
+.regisSub {
+    width: 100%;
+    background-color: rgb(31, 226, 233);
+    line-height: 22px;
+    margin-top: 9px;
+    border-radius: 3px;
+    cursor: pointer;
+}
