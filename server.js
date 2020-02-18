@@ -54,5 +54,5 @@ app.get("/login",(req,res)=>{
 
 const PORT =process.env.PORT || 4000;
 app.listen(PORT,()=>{
-    console.log(`Server is succeeded!`)
-})
+    console.log(`Server is succeeded!`);
+});
