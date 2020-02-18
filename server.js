@@ -11,7 +11,7 @@ app.set("view engine","handlebars");
 
 app.use(express.static("public"));
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
 
 
 
@@ -37,7 +37,7 @@ app.get("/products",(req,res)=>{
 app.get("/registration",(req,res)=>{
 
     res.render("registration",{
-        title:"Registration",
+        title:"Registration"
 
     });
 
@@ -46,7 +46,7 @@ app.get("/registration",(req,res)=>{
 app.get("/login",(req,res)=>{
 
     res.render("login",{
-        title:"Login",
+        title:"Login"
 
     });
 
