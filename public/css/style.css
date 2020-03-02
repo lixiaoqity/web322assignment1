@@ -36,36 +36,32 @@ nav a:link, nav a:visited {
 }
 
 .categories{
-    width: 100%;
     background-color:gainsboro;
-    left: 0;
-    bottom: 0;
     height: 17.5em;
-    display: inline-block;
-    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    /*text-align: center;*/
   }
 .categories1 {
-    left: 0;
-    float: left;
-    width: 20%;
+    display: grid;
+    /*width: 20%;*/
     padding: 0.625em;
     height: 12.5em;
     text-align: center;
 }
 .bestSellers {
-    width: 100%;
     background-color:gainsboro;
-    left: 0;
-    bottom: 0;
     height: auto;
-    display: inline-block;
-    text-align: left;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    
 }
 .bestSeller1 {
-    left: 0;
-    float: left;
-    width: 25%;
-    padding: 0.625em;
+    display: grid;
+    grid-auto-flow: column;
+    overflow: auto;
+    /*width: 25%;*/
+    /*padding: 0.625em;*/
     height: 12.5em;
     text-align: left;
 }
