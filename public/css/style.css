@@ -33,7 +33,6 @@ nav a:link, nav a:visited {
     border-left: 0.06em inset #ecefec;
     border-right: 0.06em inset #ecefec;
 }
-
 .categories{
     background-color:gainsboro;
     display: grid;
@@ -42,13 +41,16 @@ nav a:link, nav a:visited {
 .categories1 {
     display: grid;
     grid-template-rows: auto 1fr auto;
+    margin-left: 1em;
 }
 .bestSellers {
     background-color:gainsboro;
     height: auto;
     display: grid;
-    grid-template-rows: auto 1fr;
-    
+    grid-template-rows: auto 1fr;   
+}
+.bestTitle{
+    margin-left: 1em;
 }
 .bestSeller1 {
     display: grid;
@@ -56,8 +58,11 @@ nav a:link, nav a:visited {
     overflow: auto;
     /*width: 25%;*/
     /*padding: 0.625em;*/
-    height: 12.5em;
+    height: auto;
     text-align: left;
+    margin-left: 1em;
+    margin-bottom: 1em;
+    
 }
 .myProducts {
 
@@ -194,5 +199,6 @@ form p {
     .myProducts{
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(13em, 1fr));
+        max-width: 100%;
     }
 }
