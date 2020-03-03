@@ -1,8 +1,7 @@
+
 header {
     width: 100%;
     background-color:#7ba9cc;
-    left: 0em;
-    bottom: 0em;
     height: auto;
     display: inline-block;
     text-align: center;
@@ -37,17 +36,12 @@ nav a:link, nav a:visited {
 
 .categories{
     background-color:gainsboro;
-    height: 17.5em;
     display: grid;
-    grid-template-columns: repeat(5,1fr);
-    /*text-align: center;*/
+    grid-template-columns: repeat(auto-fit, minmax(13em, 1fr));
   }
 .categories1 {
     display: grid;
-    /*width: 20%;*/
-    padding: 0.625em;
-    height: 12.5em;
-    text-align: center;
+    grid-template-rows: auto 1fr auto;
 }
 .bestSellers {
     background-color:gainsboro;
@@ -75,8 +69,8 @@ nav a:link, nav a:visited {
     border: 0.0625em solid rgb(182, 180, 180);
     padding: 0.625em;
     height:auto;/*340px;*/
-    display: inline-block;
     position: relative;
+    display: grid;
 }
 
 .img-container {
@@ -88,7 +82,7 @@ nav a:link, nav a:visited {
     font: 1rem Arial;
     height: 1.25em;
     padding: 0.0625em 0 0 0.125em;
-    background-color: rgb(235, 59, 59);
+    color: rgb(235, 59, 59);
 }
 .products-des{
     font: 1rem Arial;
@@ -105,8 +99,6 @@ nav a:link, nav a:visited {
 footer {
     width: 100%;
     background-color:#7ba9cc;
-    left: 0;
-    bottom: 0;
     height: auto;
     display: inline-block;
     text-align: center;
@@ -116,13 +108,21 @@ footer {
 * {
     box-sizing: border-box;
 }
+.footContainer{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
+    margin-bottom: 1em;
+    margin-left: 1em;
+}
 .footList {
+    display: grid;
     color: black;
+    /*
     left: 0;
     float: left;
     width: 25%;
     padding: 0.625em;
-    height: 12.5em;
+    height: 12.5em;*/
     text-align: left;
 }
 .footContainer:after {
@@ -188,4 +188,11 @@ form p {
     margin-top: 0.5625em;
     border-radius: 0.1875em;
     cursor: pointer;
+}
+
+@media(max-width:800px){
+    .myProducts{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(13em, 1fr));
+    }
 }
