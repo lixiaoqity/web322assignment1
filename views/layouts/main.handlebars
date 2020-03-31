@@ -8,54 +8,15 @@
     <title>{{title}}</title>
 </head>
 <body>
-        <header>
-            <div class="headerImg">
-                <img src='img/amazon.png' alt='' width="30%">
-            </div>
-            <div class="headcontainer">
-                <nav>
-                    <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/products">Products Page</a></li>
-                        <li><a href="/registration">Customer Registration</a></li>
-                        <li><a href="/login">Login</a></li>
-                    </ul>
-                </nav>
-            </div>
-         </header>
+    <div id="bodyContainer">
+        {{> header}}
+        {{> nav}}
         <main>
             <section>
                 {{{body}}}
             </section>
         </main>
-        <footer>
-            <div class="footContainer">
-                <div class="footList">
-                    <h3>Get to Know Us</h3>
-                    <a href="/">Careers</a><br>
-                    <a href="/">Investor Relations</a><br>
-                </div>
-                <div class="footList">
-                    <h3>Make Money with Us</h3>
-                    <a href="/">Sell on Amazon</a><br>
-                    <a href="/">Advertise Your Products</a><br>
-                </div>
-                <div class="footList">
-                    <h3>Amazon Payment Products</h3>
-                    <a href="/">Amazon.ca Rewards Mastercard</a><br>
-                    <a href="/">Gift Cards</a><br>
-                </div>
-                <div class="footList">
-                    <h3>Let Us Help You</h3>
-                    <a href="/">Shipping Rates & Policies</a><br>
-                    <a href="/">Customer Service</a><br>
-                </div>
-            </div>
- 
-            <div class="headerImg">
-                <img src='img/amazon.png' alt='' width="30%">
-            </div>
-            WEB Assignment 1, created by Xiaoqi Li
-        </footer>     
+        {{> footer}}
+    </div>
 </body>
 </html>

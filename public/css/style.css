@@ -7,13 +7,14 @@ header {
     width: 100%;
     background-color:#7ba9cc;
     height: auto;
-    display: inline-block;
+    /*display: inline-block;*/
     text-align: center;
     color: white;
-    margin-bottom: 1em;
+    /*margin-bottom: 1em;*/
 }
 .headcontainer {
     background-color: navy;
+    margin-bottom: 1em;
 }
 
 nav ul {
