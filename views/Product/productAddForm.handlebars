@@ -1,0 +1,49 @@
+<div class="regisForm">
+    <h2>Add Product</h2>
+    
+    <form method="POST" action="/product/add" enctype="multipart/form-data">
+
+        <label>Category</label>
+        <select name="category">
+            <option value="Mask">Mask</option>
+            <option value="Hat and socks">Hat and socks</option>
+            <option value="Clothes">Clothes</option>
+            <option value="Glasses">Glasses</option>
+            <option value="Baby nursery">Baby nursery</option>
+        </select>
+        <br><br>
+
+        <label>Title</label>
+        <input type="text" name="title" id="add-title"> <br><br>
+
+        <label>Description</label>
+        <textarea id="add-description" name="description"></textarea><br><br>
+
+        <label>Price</label>
+        <input type="text" name="price" id="add-price"> <br><br>
+
+        <label>Inventory</label>
+        <input type="text" name="inventory" id="add-inventory"> <br><br>
+
+        <label>BestSeller</label>
+        <select name="bestSeller">
+            <option value="Star">Star</option>
+            <option value="Normal">Normal</option>
+        </select>
+        <br><br>
+
+        <label>File Upload</label>
+        <input type="file" name="productPic" id="add-productPic"> <br><br>
+
+        <!--<label>Status</label> : Open
+        <select name="status">
+            <option value="open">Open</option>
+            <option value="hold">On Hold</option>
+            <option value="completed">Completed</option>
+        </select>-->
+        <br><br>
+
+        <input type="submit" value="Add Product">
+
+    </form>
+</div>

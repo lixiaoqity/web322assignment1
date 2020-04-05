@@ -1,15 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const userModel = require("../models/User");
-//const path=require("path");
+const bcrypt = require("bcryptjs");
 
 router.get("/registration", (req, res) => {
 
     res.render("User/registration", {
         title: "Registration"
-
     });
-
 });
 
 router.get("/dashboard", (req, res) => {
@@ -17,7 +15,6 @@ router.get("/dashboard", (req, res) => {
     res.render("User/dashboard", {
         title: "Dashboard"
     });
-
 });
 /*
 router.post("/registration", (req, res) => {
@@ -25,7 +22,7 @@ router.post("/registration", (req, res) => {
     res.render("User/dashboard");
 });*/
 
-router.post("/registration",(req, res)=> {
+router.post("/registration", (req, res) => {
     //console.log(`${req.body.email}`);
     //console.log(req.body);
     //res.redirect("/User/dashboard");   
@@ -77,49 +74,48 @@ router.post("/registration",(req, res)=> {
     else {
         //res.redirect("/User/dashboard");
         //console.log(`${req.body.email}`);
-        
-        const newUser = 
+
+        const newUser =
         {
-            yourName:req.body.yourName,
-            email:req.body.email,
-            password:req.body.password
+            yourName: req.body.yourName,
+            email: req.body.email,
+            password: req.body.password
         };
         console.log(newUser.email);
-        
+
         const user = new userModel(newUser);
-        
+
         //const {yourName,email}=req.body;
         console.log(req.body);
-        
+
         const sgMail = require('@sendgrid/mail');
         sgMail.setApiKey(process.env.WEB322_API_KEY);
         const msg = {
             to: `${newUser.email}`,
             from: `jessicaguo05@gmail.com`,
             subject: `Welcome to Amazon`,
-            html: 
-            `Vistor's Full Name ${newUser.yourName} <br>
+            html:
+                `Vistor's Full Name ${newUser.yourName} <br>
             Vistor's Email Address ${newUser.email} <br>
             Welcome to Amazon. Your registration is succeed!<br>
            `,
         };
         user.save()
-        .then(()=>{
-            sgMail.send(msg)
-            .then(()=>{
-                
-                res.render("User/dashboard",{
-                    name:newUser.yourName
-                });
+            .then(() => {
+                sgMail.send(msg)
+                    .then(() => {
+
+                        res.render("User/dashboard", {
+                            name: newUser.yourName
+                        });
+                        //res.redirect("/User/dashboard");
+                    })
+                    .catch(err => {
+                        console.log(`Error ${err}`);
+                    });
                 //res.redirect("/User/dashboard");
             })
-            .catch(err=>{
-                console.log(`Error ${err}`);
-            });
-            //res.redirect("/User/dashboard");
-        })
-        .catch(err=>console.log(`Error while inserting into the data ${err}`));
-             
+            .catch(err => console.log(`Error while inserting into the data ${err}`));
     }
 });
 
@@ -132,23 +128,82 @@ router.get("/login", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
+    /*
+        Here is whre we have to determine if the email and the password exists.
+        If it does, create session, assign the user object(document) to session
+        then redirect user
+    */
     console.log(`${req.body.email}`)
+    const errorPassword = [];
+    const errorEmail = [];
     if (req.body.password == "") {
-        var errorPassword = "Enter your password";
+        errorPassword.push("Enter your password");
     }
     if (req.body.email == "") {
-        var errorEmail = "Enter your email";
+        errorEmail.push("Enter your email");
     }
+    if (errorEmail.length > 0 || errorPassword.length > 0) {
+        res.render("User/login", {
+            title: "Login",
+            errorE: errorEmail,
+            errorP: errorPassword,
+            email: req.body.email,
+            password: req.body.password
+        });
+    }
+    else {
+        //Check to see if the user's email exist in the database
+        userModel.findOne({ email: req.body.email })
+        .then((user) => {
+            if (user == null) {
+                errorEmail.push("Sorr your email was not found in our database");
+                res.render("User/login", {
+                    title: "Login",
+                    errorE: errorEmail,
+                    errorP: errorPassword,
+                    email: req.body.email,
+                    password: req.body.password
+                });
+            }
+            else {
+                //There is a matching email
+                bcrypt.compare(req.body.password, user.password)
+                .then((isMatched) => {
+                    //password match
+                    if (isMatched == true) {
+                        req.session.user = user;
 
-    res.render("User/login", {
-        title: "Login",
-        errorE: errorEmail,
-        errorP: errorPassword,
-        email: req.body.email,
-        password: req.body.password
-    });
+                        res.redirect("/user/profile")
+                    }
+                    else {
+                        //no match
+                        errorPassword.push("Sorry your password was wrong!");
 
+                        res.render("User/login", {
+                            title: "Login",
+                            errorE: errorEmail,
+                            errorP: errorPassword,
+                            email: req.body.email,
+                            password: req.body.password
+                        });
+                    }
+                })
+                .catch(err=>console.log(`Error occured when comparing for email in database ${err}`));
+            }
+        })
+        .catch(err=>console.log(`Error occured when searching for email in database ${err}`));
+    }
 });
 
+router.get("/profile",(req,res)=>{
 
-module.exports=router;
+    res.render("User/Dashboard");    
+});
+
+router.get("/logout",(req,res)=>{
+
+    req.session.destroy();
+    res.redirect("/user/login")
+});
+
+module.exports = router;

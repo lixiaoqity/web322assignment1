@@ -4,8 +4,7 @@ const bcrypt = require("bcryptjs");
 
 //This indicates the shape of the documents that will be entering the database
  const userSchma = new Schema({
-   
-  
+    
     yourName:
     {
         type:String,
@@ -36,7 +35,6 @@ const bcrypt = require("bcryptjs");
 
 userSchma.pre("save",function(next)
 {
-
     //salt random generated characters or strings
     bcrypt.genSalt(10)
     .then((salt)=>{
@@ -45,7 +43,6 @@ userSchma.pre("save",function(next)
         .then((encryptPassword)=>{
             this.password = encryptPassword;
             next();
-
         })
         .catch(err=>console.log(`Error occured when hasing ${err}`));
     })
