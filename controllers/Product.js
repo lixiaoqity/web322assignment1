@@ -2,15 +2,17 @@ const express = require('express');
 const router = express.Router();
 const productModel = require("../models/Product");
 const path = require("path");
+const isAuthenticated = require("../middleware/auth");
+const AdminAuthenticated = require("../middleware/adminAuth");
 
 //Route to direct use to Add Task form
-router.get("/add",(req,res)=>
+router.get("/add",isAuthenticated,AdminAuthenticated,(req,res)=>
 {
     res.render("Product/productAddForm");
 });
 
 //Route to process user's request and data when the user submits the add task form
-router.post("/add",(req,res)=>
+router.post("/add",isAuthenticated,AdminAuthenticated,(req,res)=>
 {
         const newProduct = {
             category : req.body.category,
@@ -45,7 +47,7 @@ router.post("/add",(req,res)=>
 });
 
 ////Route to fetch all tasks
-router.get("/list",(req,res)=>
+router.get("/list",isAuthenticated,AdminAuthenticated,(req,res)=>
 {
     //pull from the database , get the results that was returned and then inject that results into
     //the taskDashboard
@@ -78,14 +80,14 @@ router.get("/list",(req,res)=>
 });
 
 //Route to direct user to the task profile page
-router.get("/description",(req,res)=>{
+router.get("/description",isAuthenticated,AdminAuthenticated,(req,res)=>{
 
     
 
 })
 
 //Route to direct user to edit task form
-router.get("/edit/:id",(req,res)=>{
+router.get("/edit/:id",isAuthenticated,AdminAuthenticated,(req,res)=>{
     productModel.findById(req.params.id)
     .then((product)=>{
         const {_id,category,title,description,price,inventory,bestSeller} = product;
@@ -104,7 +106,7 @@ router.get("/edit/:id",(req,res)=>{
 
 
 //Route to update user data after they submit the form
-router.put("/update/:id",(req,res)=>{
+router.put("/update/:id",isAuthenticated,AdminAuthenticated,(req,res)=>{
 
     const product =
     {
@@ -124,7 +126,7 @@ router.put("/update/:id",(req,res)=>{
 });
 
 //router to delete user
-router.delete("/delete/:id",(req,res)=>{
+router.delete("/delete/:id",isAuthenticated,AdminAuthenticated,(req,res)=>{
     
     productModel.deleteOne({_id:req.params.id})
     .then(()=>{

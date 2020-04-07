@@ -47,7 +47,7 @@ app.use((req,res,next)=>{
 
     //res.locals.user is a global handlebars variable. This means that ever single handlebars file can access 
     //that user variable
-    res.locals.user = req.session.user;
+    res.locals.user = req.session.userInfo;
     next();
 });
 
@@ -65,6 +65,7 @@ mongoose.connect(process.env.MONGODB_CONNECTING_WEB322ASSIGNMENT, {useNewUrlPars
 })
 .catch(err=>console.log(`Error occured when connecting to database ${err}`));
 
-app.listen(process.env.PORT || 5000, () => {
+const PORT=process.env.PORT;
+app.listen(PORT || 5000, () => {
     console.log(`Server is succeeded!`);
 });

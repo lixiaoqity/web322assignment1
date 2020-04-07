@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const userModel = require("../models/User");
 const bcrypt = require("bcryptjs");
+const isAuthenticated = require("../middleware/auth");
+const dashBoardLoader = require("../middleware/authorization");
+
 
 router.get("/registration", (req, res) => {
 
@@ -10,12 +13,13 @@ router.get("/registration", (req, res) => {
     });
 });
 
+/*
 router.get("/dashboard", (req, res) => {
 
     res.render("User/dashboard", {
         title: "Dashboard"
     });
-});
+});*/
 /*
 router.post("/registration", (req, res) => {
     console.log(`${req.body.email}`);
@@ -72,50 +76,71 @@ router.post("/registration", (req, res) => {
         });
     }
     else {
-        //res.redirect("/User/dashboard");
-        //console.log(`${req.body.email}`);
-
-        const newUser =
-        {
-            yourName: req.body.yourName,
-            email: req.body.email,
-            password: req.body.password
-        };
-        console.log(newUser.email);
-
-        const user = new userModel(newUser);
-
-        //const {yourName,email}=req.body;
-        console.log(req.body);
-
-        const sgMail = require('@sendgrid/mail');
-        sgMail.setApiKey(process.env.WEB322_API_KEY);
-        const msg = {
-            to: `${newUser.email}`,
-            from: `jessicaguo05@gmail.com`,
-            subject: `Welcome to Amazon`,
-            html:
-                `Vistor's Full Name ${newUser.yourName} <br>
-            Vistor's Email Address ${newUser.email} <br>
-            Welcome to Amazon. Your registration is succeed!<br>
-           `,
-        };
-        user.save()
-            .then(() => {
-                sgMail.send(msg)
+        
+        userModel.findOne({ email: req.body.email })
+        .then((user)=>{
+            if(user==null){
+                const newUser =
+                {
+                    yourName: req.body.yourName,
+                    email: req.body.email,
+                    password: req.body.password
+                };
+                console.log(newUser.email);
+        
+                const user = new userModel(newUser);
+        
+                //const {yourName,email}=req.body;
+                console.log(req.body);
+        
+                const sgMail = require('@sendgrid/mail');
+                sgMail.setApiKey(process.env.WEB322_API_KEY);
+                const msg = {
+                    to: `${newUser.email}`,
+                    from: `jessicaguo05@gmail.com`,
+                    subject: `Welcome to Amazon`,
+                    html:
+                        `Vistor's Full Name ${newUser.yourName} <br>
+                    Vistor's Email Address ${newUser.email} <br>
+                    Welcome to Amazon. Your registration is succeed!<br>
+                   `,
+                };
+                user.save()
                     .then(() => {
-
-                        res.render("User/dashboard", {
-                            name: newUser.yourName
+                        sgMail.send(msg)
+                        .then(() => {
+                            console.log(user);
+                            req.session.userInfo = user;
+                            /*
+                            res.render("User/dashboard", {
+                                name: newUser.yourName
+                            });*/
+                            res.redirect("/user/profile");
+                        })
+                        .catch(err => {
+                            console.log(`Error ${err}`);
                         });
-                        //res.redirect("/User/dashboard");
+                        
                     })
-                    .catch(err => {
-                        console.log(`Error ${err}`);
-                    });
-                //res.redirect("/User/dashboard");
-            })
-            .catch(err => console.log(`Error while inserting into the data ${err}`));
+                    .catch(err => console.log(`Error while inserting into the data ${err}`));
+            }
+            else{
+                errorEmail.push("The email address has been registered.");
+                res.render("user/registration", {
+                    title: "Registration",
+                    errorN: errorName,
+                    errorE: errorEmail,
+                    errorP: errorPassword,
+                    errorPP: errorPasswordA,
+                    yourName: req.body.yourName,
+                    email: req.body.email,
+                    password: req.body.password,
+                    passwordAgain: req.body.passwordAgain
+                });
+            }
+        })
+        .catch(err=>console.log(`Error occured when checking for email in database ${err}`));
+        
     }
 });
 
@@ -170,10 +195,10 @@ router.post("/login", (req, res) => {
                 bcrypt.compare(req.body.password, user.password)
                 .then((isMatched) => {
                     //password match
-                    if (isMatched == true) {
-                        req.session.user = user;
+                    if (isMatched) {
+                        req.session.userInfo = user;
 
-                        res.redirect("/user/profile")
+                        res.redirect("/user/profile");
                     }
                     else {
                         //no match
@@ -195,10 +220,7 @@ router.post("/login", (req, res) => {
     }
 });
 
-router.get("/profile",(req,res)=>{
-
-    res.render("User/Dashboard");    
-});
+router.get("/profile",isAuthenticated,dashBoardLoader);
 
 router.get("/logout",(req,res)=>{
 

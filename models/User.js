@@ -24,6 +24,11 @@ const bcrypt = require("bcryptjs");
     {
         type:Date,
         default:Date.now()
+    },
+    type:
+    {
+        type:String,
+        default:"User"
     }
   });
 
