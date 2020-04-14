@@ -7,10 +7,10 @@
     {{#each categorySection}}
     <div class="categories1">
         <p>
-            {{this.category}}
+            {{this.title}}
         </p>
-        <img class="pro-img" src="{{this.categoryImg}}" alt='' width="220" height="240"><br>
-        <a href="/">Explore now</a>
+        <a href="/products/{{this.title}}"><img class="pro-img" src="/uploads/{{this.productPic}}" alt='' width="220" height="240"></a><br>
+        <a href="/products/{{this.title}}">Explore now</a>
     </div>
     {{/each}}
 </div>

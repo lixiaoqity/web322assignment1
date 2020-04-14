@@ -12,6 +12,7 @@ require('dotenv').config({path:"./config/keys.env"});
 const generalRoutes = require("./controllers/General");
 const productRoutes = require("./controllers/Product");
 const userRoutes = require("./controllers/User");
+const cartRoutes=require("./controllers/Cart");
 
 const app = express();
 
@@ -55,6 +56,7 @@ app.use((req,res,next)=>{
 app.use("/",generalRoutes);
 app.use("/user",userRoutes);
 app.use("/product",productRoutes);
+app.use("/cart",cartRoutes);
 app.use("/",(req,res)=>{
     res.render("General/404");
 });

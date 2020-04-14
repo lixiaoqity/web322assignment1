@@ -3,6 +3,7 @@
     padding:0;
 }
 
+/*---------       Header     -----------------*/
 header {
     width: 100%;
     background-color:#7ba9cc;
@@ -16,7 +17,7 @@ header {
     background-color: navy;
     margin-bottom: 1em;
 }
-
+/*---------       Navigation     -----------------*/
 nav ul {
     list-style-type: none;
     margin: 0;
@@ -28,7 +29,7 @@ nav ul li {
     float: left;
 }
 
-nav a:link, nav a:visited {
+.nav-list a:link, .nav-list a:visited {
     display: block;
     color: #ffffff;
     background-color: navy;
@@ -38,6 +39,7 @@ nav a:link, nav a:visited {
     border-left: 0.06em inset #ecefec;
     border-right: 0.06em inset #ecefec;
 }
+/*---------       Home page     -----------------*/
 .categories{
     background-color:gainsboro;
     display: grid;
@@ -70,11 +72,30 @@ nav a:link, nav a:visited {
     margin-bottom: 1em;
     
 }
+/*---------       Products page     -----------------*/
+.productsPage{
+    display: grid;
+    grid-template-columns: 12% 88%;
+}
+.nav-products{
+    padding-left: 0.5em;
+    padding-top: 1em;
+    background-color: aquamarine;
+    word-break: break-all;
+}
+.nav-product-list{
+    margin-left: 1em;
+    background-color: aquamarine;
+    display: list-item;
+}
+.myProducts-searchForm{
+    border: 0em;
+}
 .myProducts {
-
     display: grid;
     grid-template-columns:  1fr 1fr 1fr;
-    padding: 1.25em 0.125em;
+    padding: 0.5em 0.125em;
+    margin: 0em 1em;
 }
 .myProducts1 {
     border: 0.0625em solid rgb(182, 180, 180);
@@ -107,6 +128,25 @@ nav a:link, nav a:visited {
     bottom: 0em;
 
 }
+/*--------- Product description page -----------------*/
+.oneProduct-container{
+    display: grid;
+    grid-template-columns: 60% 40%;
+}
+.oneProduct-img-container{
+    padding: 3em;
+    text-align: center;
+}
+.oneProduct-form{
+    border: 0em;
+}
+.oneProduct-myProducts{
+    padding-right: 5em;
+    padding-top: 3em;
+    padding-right: 3em;
+    display: grid;
+}
+/*---------       Footer     -----------------*/
 footer {
     width: 100%;
     background-color:#7ba9cc;
@@ -149,6 +189,7 @@ a {
 a:hover{
     color:blue;
 }
+/*--------- Registration and Login page  -----------------*/
 .regisForm{
     text-align: center;
 }
@@ -204,9 +245,44 @@ form p {
 .errorMessage{
     color: red;
 }
-
+/*--------- Shopping cart page -----------------*/
+.submit-shoppingCart{
+    text-align: center;
+}
+.oneItem-shoppingCart{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.oneItem-shoppingCart-img{
+    text-align: center;
+}
+.oneItem-shoppingCart-info{
+    text-align: center;
+}
+.total-shoppingCart{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: none;
+}
+.form-shoppigCart{
+    width: 100%;
+    border: none;
+}
+.order-submit-shoppingCart{
+    text-align: center;
+}
 @media(max-width:800px){
     .myProducts{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(13em, 1fr));
+        max-width: 100%;
+    }
+    .oneProduct-container{
+        display: grid;
+        grid-template-columns: repeat(auto-fit);
+        max-width: 100%; 
+    }
+    .oneItem-shoppingCart{
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(13em, 1fr));
         max-width: 100%;

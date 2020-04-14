@@ -2,13 +2,18 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 //This indicates the shape of the documents that will be entering the database
-const productSchema = new Schema({
+const addToCartSchema = new Schema({
    
-    category :
+    userId:
     {
         type:String,
         required:true
-    },    
+    },
+    productId: 
+    {
+        type:String,
+        required:true
+    },   
     title:
     {
       type:String,
@@ -24,24 +29,14 @@ const productSchema = new Schema({
         type:String,
         required:true
     },
-    inventory:
+    quantity:
     {
         type:Number,
-        required:true
-    },
-    bestSeller:
-    {
-        type:String,
         required:true
     },
     productPic:
     {
         type:String
-    },
-    isCategory:
-    {
-        type:String,
-        default:"false"
     },
     dateCreated:
     {
@@ -55,6 +50,6 @@ const productSchema = new Schema({
     The model will allow you to perform CRUD operations on a given collection!!! 
   */
 
- const productModel = mongoose.model('Product', productSchema);
+ const addToCartModel = mongoose.model('Cart', addToCartSchema);
 
- module.exports = productModel;
+ module.exports = addToCartModel;

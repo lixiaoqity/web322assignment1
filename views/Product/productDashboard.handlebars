@@ -28,6 +28,7 @@
             <th>BestSeller</th>
             <th>Product Image</th>
             <th>Product Picture</th>
+            <th>Is Category</th>
         </thead>
         <tbody>
             {{#each data}}
@@ -56,7 +57,10 @@
                 </td>
                 <td>
                     <img src="/uploads/{{this.productPic}}">
-                </td>               
+                </td>
+                <td>
+                    <span>{{this.isCategory}}</span>
+                </td>              
                 <td>
                     <a href="/product/edit/{{this.id}}" class="edit-delete-button">Edit</a>
                     <a href="/product/delete/{{this.id}}?method=DELETE" class="edit-delete-button">Delete</a>
@@ -64,7 +68,7 @@
             </tr>
 
             {{else}}
-            <td colspan="8">
+            <td colspan="9">
                 <p>No products in the database</p>
             </td>
 

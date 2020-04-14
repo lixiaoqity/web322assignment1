@@ -1,13 +1,59 @@
-<div class="myProducts">
-    {{#each data}}
-        <div class="myProducts1">
-            <div class="attributes">{{this.bestSeller}}</div>
-            <div class="img-container"> 
-                <img src="/uploads/{{this.productPic}}" width="170" height="180">
-            </div>
-            <div class="products-des"><p>{{this.title}}</p><br></div>
-            <div class="products-des"><p>{{this.price}}</p><br></div>
-            <div class="products-cate"><p>{{this.category}}</p></div>             
+<div class="productsPage">
+    <div class="nav-products">
+        <h4><a href="/products">All Products</a></h4>
+        <ul>
+            <li class="nave-product-list">
+                <a href="/products/Mask">Masks</a>
+            </li>
+            <li>
+                <a href="/products/Hat and socks">Hat and socks</a>
+            </li>
+            <li>
+                <a href="/products/Clothes">Clothes</a>
+            </li>
+            <li>
+                <a href="/products/Glasses">Glasses</a>
+            </li>
+            <li>
+                <a href="/products/Baby nursery">Baby nursery</a>
+            </li>
+        </ul>
+    </div>
+    <div>
+        <div>
+            <form class="myProducts-searchForm" method="POST" action="/products/searchPage">
+                <label>Search By</label>
+                <select class="myProducts-select" name="productSearch">
+                    <option value="all">All Products</option>
+                    <option value="Mask">Masks</option>
+                    <option value="Hat and socks">Hat and socks</option>
+                    <option value="Clothes">Clothes</option>
+                    <option value="Glasses">Glasses</option>
+                    <option value="Baby nursery">Baby nursery</option>
+                </select>
+                <input class="myProducts-searchButton" type="submit" value="Search">
+            </form>
         </div>
-    {{/each}}
+        <div class="myProducts">
+            {{#each data}}
+            <div class="myProducts1">
+                <div class="attributes">{{this.bestSeller}}</div>
+                <div class="img-container">
+                    <a href="/products/oneProduct/{{this.id}}"><img src="/uploads/{{this.productPic}}" width="170"
+                            height="180"></a>
+                </div>
+                <div class="products-des">
+                    <p>{{this.title}}</p><br>
+                </div>
+                <div class="products-des">
+                    <p>Price :${{this.price}}</p><br>
+                </div>
+                <div class="products-cate">
+                    <p>{{this.category}}</p>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+
 </div>

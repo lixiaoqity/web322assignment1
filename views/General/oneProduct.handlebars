@@ -1,0 +1,34 @@
+<h2>Add product page</h2>
+<div class="oneProduct-container">
+    <div class="oneProduct-img-container">
+        <img src="/uploads/{{productPic}}" with="170" height="180">
+    </div>
+    <div class="oneProduct-myProducts">
+        <form class="oneProduct-form" method="POST" action="/cart/addToCart/{{_id}}">
+
+            <div class="oneProduct-products-des">
+                <h4>{{title}}</h4><br>
+            </div>
+            <div class="oneProduct-products-des">
+                Price: {{price}}<br><br>
+            </div>
+            <div class="oneProduct-products-des">
+                <p>{{description}}</p><br>
+            </div>
+
+            <div class="oneProduct-products-des">
+                {{#if inventory}}
+                In Stock: {{inventory}}
+                {{else}}
+                Out of Stock
+                {{/if}}
+            </div>
+            <br>
+            <label>Quantity:</label>
+            <input type="number" name="quantity" min="1" value="1">
+
+            <br><br>
+            <input type="submit" value="Add to Cart">
+        </form>
+    </div>
+</div>

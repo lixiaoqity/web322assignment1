@@ -1,9 +1,11 @@
 <div class="headcontainer">
-    <nav>
+    <nav class="nav-list">
         <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/products">Products Page</a></li>
             {{#if user}}
+                <li><a href="/cart/list">Shopping Cart</a></li>
+                <li><a href="/user/profile">User Dashboard</a></li>
                 <li><a href="/user/logout">Logout</a></li>
             {{else}}
                 <li><a href="/user/registration">Customer Registration</a></li>
