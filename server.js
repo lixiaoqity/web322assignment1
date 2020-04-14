@@ -16,29 +16,26 @@ const cartRoutes=require("./controllers/Cart");
 
 const app = express();
 
+app.engine("handlebars", exphbs());
+app.set("view engine", "handlebars");
+
+app.use(express.static("public"));
+
 // parse application/x-www-form-urlencoded
 //app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(express.static("public"));
-
-app.engine("handlebars", exphbs());
-app.set("view engine", "handlebars");
-
 app.use((req,res,next)=>{
-
     if(req.query.method=="PUT")
     {
         req.method="PUT"
     }
-
     else if(req.query.method=="DELETE")
     {
         req.method="DELETE"
     }
-
     next();
-})
+});
 
 app.use(fileUpload());
 

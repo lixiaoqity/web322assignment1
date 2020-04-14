@@ -56,8 +56,19 @@ router.get("/list",isAuthenticated,(req,res)=>{
            }
        });
        let totalSum=0;
-       filteredProducts.forEach((val)=>{
-           totalSum=totalSum+val.itemSum;
+       filteredProducts.forEach((order)=>{
+           totalSum=totalSum+order.itemSum;
+           productModel.findById({ _id: order.productId})
+           .then((product)=>{
+               if(order.quantity <= product.inventory) {
+                   order.stock = "In Stock";
+               }
+               if(order.quantity > product.inventory) {
+                   order.stock = "Out Of Stock";
+               }
+           })
+           .catch(err => console.log(`inventory data error :${err}`));
+
        });
        res.render("Cart/cartDashboard", {
            title: "Shopping Cart List",
