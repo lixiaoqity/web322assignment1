@@ -68,6 +68,6 @@ mongoose.connect(process.env.MONGODB_CONNECTING_WEB322ASSIGNMENT, {useNewUrlPars
 .catch(err=>console.log(`Error occured when connecting to database ${err}`));
 
 const PORT=process.env.PORT;
-app.listen(PORT || 5000, () => {
+app.listen(PORT, () => {
     console.log(`Server is succeeded!`);
 });
