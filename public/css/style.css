@@ -271,6 +271,9 @@ form p {
 .order-submit-shoppingCart{
     text-align: center;
 }
+.cartDashboard{
+    margin-left: 3em;
+}
 @media(max-width:800px){
     .myProducts{
         display: grid;

@@ -1,0 +1,40 @@
+<h4>Shopping Cart Page</h4>
+<div class="shoppingCart-container">
+    {{#each data}}
+    <div class="oneItem-shoppingCart">
+        <div class="oneItem-shoppingCart-img">
+            <img src="/uploads/{{productPic}}" with="170" height="180">
+        </div>
+        <div class="oneItem-shoppingCart-info">
+            <div>
+                <h4>{{title}}</h4><br>
+            </div>
+            <div>
+                Price: {{price}}<br><br>
+            </div>
+            <div>
+                Inventory: {{stock}}
+            </div>
+            <br>
+            <label>Quantity: {{quantity}}</label>
+        </div>
+        <div oneItem-shoppingCart-sum>
+            <h4>Order Summary</h4>
+            <P><span>Items: {{quantity}}         </span><span>CND${{itemSum}} </span></P>
+            <a href="/cart/delete/{{this.id}}?method=DELETE">Delete</a>
+        </div>
+    </div>
+    {{/each}}
+    <div class="submit-shoppingCart">
+        <form class="form-shoppigCart" method="POST" action="/cart/checkout">
+            <div class="total-shoppingCart">
+                <div class="order-submit-shoppingCart">
+                    <input type="submit" value="Place your order">
+                </div>
+                <div>
+                    <p><span>Order Total:</span> <span>CND${{total}}   </span></p>
+                </div>
+            </div>           
+        </form>
+    </div>
+</div>

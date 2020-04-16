@@ -13,23 +13,8 @@ router.get("/registration", (req, res) => {
     });
 });
 
-/*
-router.get("/dashboard", (req, res) => {
-
-    res.render("User/dashboard", {
-        title: "Dashboard"
-    });
-});*/
-/*
 router.post("/registration", (req, res) => {
-    console.log(`${req.body.email}`);
-    res.render("User/dashboard");
-});*/
-
-router.post("/registration", (req, res) => {
-    //console.log(`${req.body.email}`);
-    //console.log(req.body);
-    //res.redirect("/User/dashboard");   
+  
     const errorName = [];
     const errorEmail = [];
     const errorPassword = [];
@@ -98,7 +83,7 @@ router.post("/registration", (req, res) => {
                 const msg = {
                     to: `${newUser.email}`,
                     from: `jessicaguo05@gmail.com`,
-                    subject: `Welcome to Amazon`,
+                    subject: `Welcome to Amazonon`,
                     html:
                         `Vistor's Full Name ${newUser.yourName} <br>
                     Vistor's Email Address ${newUser.email} <br>
@@ -111,16 +96,12 @@ router.post("/registration", (req, res) => {
                         .then(() => {
                             console.log(user);
                             req.session.userInfo = user;
-                            /*
-                            res.render("User/dashboard", {
-                                name: newUser.yourName
-                            });*/
+
                             res.redirect("/user/profile");
                         })
                         .catch(err => {
                             console.log(`Error ${err}`);
-                        });
-                        
+                        });                       
                     })
                     .catch(err => console.log(`Error while inserting into the data ${err}`));
             }
@@ -139,8 +120,7 @@ router.post("/registration", (req, res) => {
                 });
             }
         })
-        .catch(err=>console.log(`Error occured when checking for email in database ${err}`));
-        
+        .catch(err=>console.log(`Error occured when checking for email in database ${err}`));       
     }
 });
 
@@ -149,7 +129,6 @@ router.get("/login", (req, res) => {
     res.render("User/login", {
         title: "Login"
     });
-
 });
 
 router.post("/login", (req, res) => {
