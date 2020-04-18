@@ -6,35 +6,6 @@ const userModel = require("../models/User");
 const isAuthenticated = require("../middleware/auth");
 
 router.get("/list",isAuthenticated,(req,res)=>{
-    /*
-    addToCartModel.find({userId:req.session.userInfo._id})
-    .then((products)=>{
-        
-        const filteredProducts = products.map(product=>{
-            return {
-                id : product._id,
-                userId : product.userId,
-                productId : product.productId,
-                title : product.title,
-                description : product.description,
-                price : product.price,
-                quantity : product.quantity,
-                productPic : product.productPic,
-                itemSum : Number(product.quantity)*Number(product.price)                
-            }
-        });
-        let totalSum=0;
-        filteredProducts.forEach((val)=>{
-            totalSum=totalSum+val.itemSum;
-        });
-        res.render("Cart/cartDashboard", {
-            title: "Shopping Cart List",
-            data : filteredProducts,
-            total : totalSum
-        });
-    })
-    .catch(err=>console.log(`Error happened when pulling shopping cart info from database :${err}`));
-    */
    let total = 0;
     productModel.find()
         .then((products) => {
@@ -90,7 +61,6 @@ router.get("/list",isAuthenticated,(req,res)=>{
 });
 
 router.post("/addToCart/:id",isAuthenticated,(req,res)=>{
-
     productModel.findById(req.params.id)
     .then((product)=>{
         const cartProduct ={
@@ -157,14 +127,12 @@ router.post("/checkout",isAuthenticated,(req,res)=>{
                 itemSum : Number(cart.price)*cart.quantity
             }
         });
-
         let totalPrice = 0;
         let totalItem = 0;
         filtered.forEach((item)=>{
             totalPrice = totalPrice + item.itemSum;
             totalItem = totalItem + item.quantity;
         });
-
         addToCartModel.deleteMany({userId:req.session.userInfo._id})
         .then(()=>{
             userModel.findById(req.session.userInfo._id)
@@ -185,7 +153,6 @@ router.post("/checkout",isAuthenticated,(req,res)=>{
                 Total cost is $${totalPrice}.
                 `,
                 };
-
                 sgMail.send(msg)
                 .then(()=>{
                     res.render("Cart/cartDashboard",{

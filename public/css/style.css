@@ -259,6 +259,9 @@ form p {
 .oneItem-shoppingCart-info{
     text-align: center;
 }
+.oneItem-shoppingCart-sum{
+    text-align: center;
+}
 .total-shoppingCart{
     display: grid;
     grid-template-columns: 1fr 1fr;

@@ -26,9 +26,7 @@ router.post("/registration", (req, res) => {
     if (req.body.email == "") {
         errorEmail.push("Enter your email");
     }
-
     var temp = req.body.password;
-    console.log(req.body.password);
     const regu = RegExp(/^[A-Za-z1-9]+$/);
     if (req.body.password == "") {
         errorPassword.push("Enter your password");
@@ -71,13 +69,9 @@ router.post("/registration", (req, res) => {
                     email: req.body.email,
                     password: req.body.password
                 };
-                console.log(newUser.email);
-        
+                console.log(newUser.email);    
                 const user = new userModel(newUser);
-        
-                //const {yourName,email}=req.body;
-                console.log(req.body);
-        
+                console.log(req.body);       
                 const sgMail = require('@sendgrid/mail');
                 sgMail.setApiKey(process.env.WEB322_API_KEY);
                 const msg = {

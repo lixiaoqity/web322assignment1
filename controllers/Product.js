@@ -46,19 +46,14 @@ router.post("/add",AdminAuthenticated,(req,res)=>
 });
 
 ////Route to fetch all tasks
-router.get("/list",AdminAuthenticated,(req,res)=>
-{
+router.get("/list",AdminAuthenticated,(req,res)=>{
     //pull from the database , get the results that was returned and then inject that results into
     //the taskDashboard
-
     productModel.find()
     .then((products)=>{
-
         //Filter out the information that you want from the array of documents that was returned into
         //a new array
-
         //Array 300 documents meaning that the array has 300 elements 
- 
         const filteredProduct =   products.map(product=>{
                 return {
                     id: product._id,
@@ -82,8 +77,6 @@ router.get("/list",AdminAuthenticated,(req,res)=>
 //Route to direct user to the task profile page
 router.get("/description",AdminAuthenticated,(req,res)=>{
 
-    
-
 })
 
 //Route to direct user to edit task form
@@ -103,8 +96,6 @@ router.get("/edit/:id",AdminAuthenticated,(req,res)=>{
     })
     .catch(err=>console.log(`Error happened when pulling from the database :${err}`));
 })
-
-
 //Route to update user data after they submit the form
 router.put("/update/:id",AdminAuthenticated,(req,res)=>{
 
