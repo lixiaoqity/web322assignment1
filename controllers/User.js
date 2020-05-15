@@ -48,7 +48,7 @@ router.post("/registration", (req, res) => {
         errorPasswordA.push("Password input is inconsistent");
     }
     if (errorName.length > 0 || errorEmail.length > 0 || errorPassword.length > 0 || errorPasswordA.length > 0) {
-        res.render("user/registration", {
+        res.render("User/registration", {
             title: "Registration",
             errorN: errorName,
             errorE: errorEmail,
@@ -103,7 +103,7 @@ router.post("/registration", (req, res) => {
             }
             else{
                 errorEmail.push("The email address has been registered.");
-                res.render("user/registration", {
+                res.render("User/registration", {
                     title: "Registration",
                     errorN: errorName,
                     errorE: errorEmail,
