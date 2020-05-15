@@ -26,13 +26,13 @@ router.post("/registration", (req, res) => {
     if (req.body.email == "") {
         errorEmail.push("Enter your email");
     }
-    var temp = req.body.password;
+    //var temp = req.body.password;
     const regu = RegExp(/^[A-Za-z1-9]+$/);
     if (req.body.password == "") {
         errorPassword.push("Enter your password");
     }
     else if (req.body.password.length > 5 && req.body.password.length < 13) {
-        if (!regu.test(temp)) {
+        if (!regu.test(req.body.password)) {
             errorPassword.push("Your password must have letters and numbers only");
         }
     }
