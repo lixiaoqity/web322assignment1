@@ -31,13 +31,15 @@ router.post("/registration", (req, res) => {
     if (req.body.password == "") {
         errorPassword.push("Enter your password");
     }
-    else if (req.body.password.length > 5 && req.body.password.length < 13) {
-        if (!regu.test(req.body.password)) {
-            errorPassword.push("Your password must have letters and numbers only");
-        }
-    }
     else {
-        errorPassword.push("Your password must have 6 to 12 characters");
+        if(req.body.password.length > 5 && req.body.password.length < 13){
+            if (!regu.test(req.body.password)) {
+                errorPassword.push("Your password must have letters and numbers only");
+            }
+        }
+        else{
+            errorPassword.push("Your password must have 6 to 12 characters");
+        }
     }
     if (req.body.passwordAgain == "") {
         errorPasswordA.push("Enter your password again");
